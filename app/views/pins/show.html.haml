@@ -22,3 +22,19 @@
                             - if ( current_user == @pin.user ) and user_signed_in?
                                 = link_to "Edit", edit_pin_path, class: "btn btn-default"
                                 = link_to "Delete", pin_path, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default"
+        .panel.panel-default
+            .panel-body
+                #comment
+                    %h2.comment_count= pluralize(@pin.comments.count, "Comment")
+                    - @comments.each do |comment|
+                        .btn-group.pull-right
+                            - if comment.user == current_user
+                                = link_to "Delete", [comment.pin, comment], method: :delete, data: { confirm: "Are you sure?" }    
+                        Submitted
+                        = time_ago_in_words(comment.created_at)
+                        ago by
+                        %b= comment.user.name
+                        %p.content= comment.content
+                        %br/
+            
+                    = render 'comments/form'
