@@ -12,7 +12,7 @@
                 .row
                     .col-md-6
                         %p.user
-                        Submitted by
+                        Author:
                         = @pin.user.name
                     .col-md-6
                         .btn-group.pull-right
@@ -29,7 +29,7 @@
                     - @comments.each do |comment|
                         .btn-group.pull-right
                             - if comment.user == current_user
-                                = link_to "Delete", [comment.pin, comment], method: :delete, data: { confirm: "Are you sure?" }    
+                                = link_to "Delete", [comment.pin, comment], method: :delete, data: { confirm: "Are you sure?" }
                         Submitted
                         = time_ago_in_words(comment.created_at)
                         ago by

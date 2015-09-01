@@ -5,7 +5,7 @@
             .panel-body
                 %h2= link_to pin.title, pin
                 %p.user
-                Submitted by
+                Author:
                 = pin.user.name
             .data.clearfix
                 %p.buttons
@@ -13,3 +13,4 @@
                         %i.fa.fa-comments-o.fa-2x
                         = pin.comments.count
                         Comments
+                    
