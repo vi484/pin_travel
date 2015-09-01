@@ -11,6 +11,8 @@
             .panel-footer
                 .row
                     .col-md-6
+                        .round-image-50
+                            = image_tag @pin.user.avatar.url(:thumb)
                         %p.user
                         Author:
                         = @pin.user.name
@@ -25,16 +27,18 @@
         .panel.panel-default
             .panel-body
                 #comment
-                    %h2.comment_count= pluralize(@pin.comments.count, "Comment")
                     - @comments.each do |comment|
                         .btn-group.pull-right
                             - if comment.user == current_user
                                 = link_to "Delete", [comment.pin, comment], method: :delete, data: { confirm: "Are you sure?" }
+                        .round-image-50
+                            = image_tag comment.user.avatar.url(:medium)
                         Submitted
                         = time_ago_in_words(comment.created_at)
                         ago by
                         %b= comment.user.name
                         %p.content= comment.content
+
                         %br/
             
                     = render 'comments/form'
